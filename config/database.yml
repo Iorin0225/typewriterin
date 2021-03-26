@@ -51,6 +51,9 @@ test:
 #
 production:
   <<: *default
-  database: typewriterin_production
-  username: typewriterin
-  password: <%= ENV['TYPEWRITERIN_DATABASE_PASSWORD'] %>
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  # database: typewriterin_production
+  # username: typewriterin
+  # password: <%= ENV['TYPEWRITERIN_DATABASE_PASSWORD'] %>

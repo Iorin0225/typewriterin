@@ -6,15 +6,13 @@
 // All it does is render <div>Hello Vue</div> at the bottom of the page.
 
 import Vue from 'vue'
-import App from '../app.vue'
+import Typewriterin from '../components/Typewriterin.vue'
 
 document.addEventListener('DOMContentLoaded', () => {
-  const app = new Vue({
-    render: h => h(App)
+  const typewriterin = new Vue({
+    render: h => h(Typewriterin)
   }).$mount()
-  document.body.appendChild(app.$el)
-
-  console.log(app)
+  document.body.appendChild(typewriterin.$el)
 })
 
 

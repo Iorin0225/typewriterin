@@ -29,7 +29,7 @@ chgrp -R app /app
 ENV RAILS_ENV development
 
 # ADD --chown=app:app .env.* .rubocop.yml .rubocop_todo.yml
-ADD --chown=app:app config.ru Rakefile babel.config.js /app/
+ADD --chown=app:app config.ru Rakefile babel.config.js postcss.config.js /app/
 
 # ADD --chown=app:app Rakefile config.ru .env.* .postcssrc.yml .rspec .rubocop.yml .rubocop_todo.yml .babelrc .yardopts /app/
 
