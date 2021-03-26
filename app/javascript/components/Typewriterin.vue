@@ -26,13 +26,13 @@
         <div class="typewriterin__config__panel__row">
           <label for="typewriterin-font-size">FONT-SIZE: </label>
           <div class="input-wrapper">
-            <input type="text" name='typewriterin-font-size' :value="editorFontColor"  v-bind:style="configStyle"/>
+            <input type="text" name='typewriterin-font-size' :value="editorFontSize"  v-bind:style="configStyle"/>
           </div>
         </div>
         <div class="typewriterin__config__panel__row">
           <label for="typewriterin-font-color">FONT-COLOR: </label>
           <div class="input-wrapper">
-            <input type="text" name='typewriterin-font-color' :value="editorFontSize"  v-bind:style="configStyle"/>
+            <input type="text" name='typewriterin-font-color' :value="editorFontColor"  v-bind:style="configStyle"/>
           </div>
         </div>
         <div class="typewriterin__config__panel__row">
@@ -133,8 +133,8 @@
       },
       updateConfig: function() {
         this.editorFontFamily = document.querySelector("input[name=typewriterin-font-family]").value;
-        this.editorFontColor = document.querySelector("input[name=typewriterin-font-size]").value;
-        this.editorFontSize = document.querySelector("input[name=typewriterin-font-color]").value;
+        this.editorFontSize = document.querySelector("input[name=typewriterin-font-size]").value;
+        this.editorFontColor = document.querySelector("input[name=typewriterin-font-color]").value;
         this.editorBackGround = document.querySelector("input[name=typewriterin-background-color]").value;
       }
     }
