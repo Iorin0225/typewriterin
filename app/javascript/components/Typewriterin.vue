@@ -6,7 +6,7 @@
       </div>
     </div>
     <div class="typewriterin__textarea" v-on:mousemove="flashTextArea()">
-      <textarea v-bind:style="editorStyle"></textarea>
+      <textarea v-bind:style="editorStyle" placeholder="Type anything!"></textarea>
     </div>
     <div class="typewriterin__footer" v-on:mouseover="toggleConfigButtons(true)" v-on:mouseleave="toggleConfigButtons(false)">
       <div class="typewriterin__footer__config-button-wrapper icon-button">
