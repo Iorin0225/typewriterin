@@ -19,7 +19,7 @@ WORKDIR /app
 
 ADD Gemfile Gemfile.lock yarn.lock package.json /app/
 
-RUN gem install bundler && bundle install
+RUN gem install bundler && bundle install --without production
 
 RUN yarn
 

@@ -1,11 +1,11 @@
 <template>
   <div class="typewriterin" v-bind:style="backgroundStyle">
     <div class="typewriterin__header">
-      <div class="typewriterin__header__logo">
+      <div class="typewriterin__header__logo" v-bind:style="logoStyle">
         TYPEWRITERIN
       </div>
     </div>
-    <div class="typewriterin__textarea">
+    <div class="typewriterin__textarea" v-on:mousemove="flashTextArea()">
       <textarea v-bind:style="editorStyle"></textarea>
     </div>
     <div class="typewriterin__footer" v-on:mouseover="toggleConfigButtons(true)" v-on:mouseleave="toggleConfigButtons(false)">
@@ -20,25 +20,25 @@
         <div class="typewriterin__config__panel__row">
           <label for="typewriterin-font-family">FONT-FAMILY: </label>
           <div class="input-wrapper">
-            <input type="text" name='typewriterin-font-family' :value="editorFontFamily"  v-bind:style="configStyle"/>
+            <input type="text" name='typewriterin-font-family' :value="editorFontFamily" />
           </div>
         </div>
         <div class="typewriterin__config__panel__row">
           <label for="typewriterin-font-size">FONT-SIZE: </label>
           <div class="input-wrapper">
-            <input type="text" name='typewriterin-font-size' :value="editorFontSize"  v-bind:style="configStyle"/>
+            <input type="text" name='typewriterin-font-size' :value="editorFontSize" />
           </div>
         </div>
         <div class="typewriterin__config__panel__row">
           <label for="typewriterin-font-color">FONT-COLOR: </label>
           <div class="input-wrapper">
-            <input type="text" name='typewriterin-font-color' :value="editorFontColor"  v-bind:style="configStyle"/>
+            <input type="text" name='typewriterin-font-color' :value="editorFontColor" />
           </div>
         </div>
         <div class="typewriterin__config__panel__row">
           <label for="typewriterin-background-color">BACKGROUND-COLOR: </label>
           <div class="input-wrapper">
-            <input type="text" name='typewriterin-background-color' :value="editorBackGround"   v-bind:style="configStyle"/>
+            <input type="text" name='typewriterin-background-color' :value="editorBackGround"  />
           </div>
         </div>
         <div class="typewriterin__config__panel__close-button-wrapper icon-button">
@@ -56,9 +56,9 @@
   export default {
     data: function () {
       return {
-        editorFontFamily: 'NitalagoRuika-03',
-        editorFontColor: '#eee',
-        editorFontSize: '1.2rem',
+        editorFontFamily: 'NitalagoRuika-02',
+        editorFontColor: '#ccc',
+        editorFontSize: '1rem',
         editorBackGround: '#333'
       }
     },
@@ -67,10 +67,15 @@
       window.onload = function() {
 
         var logo = document.querySelector('.typewriterin__header__logo')
-        console.log('aaa')
         TweenMax.to(logo, 0.5, {
           delay: 1,
           opacity: 0,
+        });
+
+        var textarea = document.querySelector('.typewriterin__textarea')
+        TweenMax.to(textarea, 0.5, {
+          delay: 1,
+          border: 'none',
         });
       }
     },
@@ -90,13 +95,25 @@
         }
       },
 
-      configStyle: function() {
+      logoStyle: function() {
         return {
           'color': this.editorFontColor,
         }
       }
     },
     methods: {
+      flashTextArea: function() {
+        var textarea = document.querySelector('.typewriterin__textarea')
+        TweenMax.to(textarea, 0.1, {
+          border: '1px dotted #666',
+          onComplete: function() {
+            TweenMax.to(textarea, 0.5, {
+              delay: 1,
+              border: 'none',
+            });
+          }
+        });
+      },
       toggleConfigButtons: function(is_show) {
         var opacity = 0
         var marginTop = 0
@@ -161,7 +178,7 @@
       font-size: 2rem;
       line-height: 5rem;
       text-align: center;
-      font-family: 'NitalagoRuikaMono-06';
+      font-family: 'Arial Black';
     }
   }
 
@@ -174,7 +191,7 @@
 
     textarea {
       display: block;
-      height: 30rem;
+      min-height: 30rem;
       background: none;
       outline: none;
       border: none;
@@ -230,7 +247,7 @@
 
         * {
           font-size: 1.5rem;
-          font-family: 'NitalagoRuika-03';
+          font-family: 'Arial Black';
         }
 
         label, .input-wrapper {
@@ -242,7 +259,6 @@
         }
 
         .input-wrapper {
-
           background: #333;
           padding: .5rem 2rem;
           border-radius: 1rem;
