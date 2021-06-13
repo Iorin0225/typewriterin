@@ -5,7 +5,10 @@
     "@rails/actioncable": "^6.0.0",
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "5.4.0",
+    "glob-parent": "^5.1.2",
     "gsap": "^3.6.1",
+    "normalize-url": "^4.5.1",
+    "postcss": "^8.2.10",
     "vue": "^2.6.14",
     "vue-loader": "^15.9.7",
     "vue-template-compiler": "^2.6.14"
