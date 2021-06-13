@@ -42,7 +42,7 @@
           </div>
         </div>
         <div class="typewriterin__config__panel__close-button-wrapper icon-button">
-          <button class="typewriterin__config__panel__close-button white" v-on:click="toggleConfigPanel(false); updateConfig();">
+          <button class="typewriterin__config__panel__close-button white" v-on:click="toggleConfigPanel(false); updateConfig(); saveConfig();">
             <i class='fas fa-times fa-3x'></i>
           </button>
         </div>
@@ -64,15 +64,16 @@
     },
 
     mounted: function() {
-      window.onload = function() {
+      this.loadConfig();
 
-        var logo = document.querySelector('.typewriterin__header__logo')
+      window.onload = function() {
+        let logo = document.querySelector('.typewriterin__header__logo')
         TweenMax.to(logo, 0.5, {
           delay: 1,
           opacity: 0,
         });
 
-        var textarea = document.querySelector('.typewriterin__textarea')
+        let textarea = document.querySelector('.typewriterin__textarea')
         TweenMax.to(textarea, 0.5, {
           delay: 1,
           border: 'none',
@@ -103,7 +104,7 @@
     },
     methods: {
       flashTextArea: function() {
-        var textarea = document.querySelector('.typewriterin__textarea')
+        let textarea = document.querySelector('.typewriterin__textarea')
         TweenMax.to(textarea, 0.1, {
           border: '1px dotted #666',
           onComplete: function() {
@@ -115,14 +116,14 @@
         });
       },
       toggleConfigButtons: function(is_show) {
-        var opacity = 0
-        var marginTop = 0
+        let opacity = 0
+        let marginTop = 0
         if (is_show)
           opacity = 1
         if (!is_show)
           marginTop = '5rem'
 
-        var configButtons = document.querySelectorAll(".typewriterin__footer__config-button");
+        let configButtons = document.querySelectorAll(".typewriterin__footer__config-button");
         configButtons.forEach(function(element, index) {
           TweenMax.to(element, 0.3, {
             opacity: opacity,
@@ -131,9 +132,9 @@
         });
       },
       toggleConfigPanel: function(is_show) {
-        var vue = this
-        var configPanel = document.querySelector(".typewriterin__config");
-        var opacity = 0
+        let vue = this
+        let configPanel = document.querySelector(".typewriterin__config");
+        let opacity = 0
         if (is_show) {
           configPanel.style.visibility = 'visible'
           opacity = 1
@@ -153,7 +154,26 @@
         this.editorFontSize = document.querySelector("input[name=typewriterin-font-size]").value;
         this.editorFontColor = document.querySelector("input[name=typewriterin-font-color]").value;
         this.editorBackGround = document.querySelector("input[name=typewriterin-background-color]").value;
-      }
+      },
+      loadConfig: function() {
+        let config = localStorage.getItem('typewriterin--config')
+        if (!config) return
+
+        config = JSON.parse(config)
+
+        this.editorFontFamily = config.editorFontFamily
+        this.editorFontColor = config.editorFontColor
+        this.editorFontSize = config.editorFontSize
+        this.editorBackGround = config.editorBackGround
+      },
+      saveConfig: function() {
+        localStorage.setItem('typewriterin--config', JSON.stringify({
+          editorFontFamily: this.editorFontFamily,
+          editorFontColor: this.editorFontColor,
+          editorFontSize: this.editorFontSize,
+          editorBackGround: this.editorBackGround
+        }))
+      },
     }
   }
 </script>
