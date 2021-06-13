@@ -56,7 +56,7 @@
   export default {
     data: function () {
       return {
-        editorFontFamily: 'NitalagoRuika-02',
+        editorFontFamily: 'sans-serif',
         editorFontColor: '#ccc',
         editorFontSize: '1rem',
         editorBackGround: '#333'
@@ -198,7 +198,7 @@
       font-size: 2rem;
       line-height: 5rem;
       text-align: center;
-      font-family: 'Arial Black';
+      font-family: 'Arial Black', sans-serif;
     }
   }
 
