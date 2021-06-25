@@ -10,39 +10,39 @@
     </div>
     <div class="typewriterin__footer" v-on:mouseover="toggleConfigButtons(true)" v-on:mouseleave="toggleConfigButtons(false)">
       <div class="typewriterin__footer__config-button-wrapper icon-button">
-        <button class="typewriterin__footer__config-button" v-on:click="toggleConfigPanel(true)">
+        <button class="typewriterin__footer__config-button" v-on:click="toggleConfigPanel(true)"  v-bind:style="iconStyle">
           <i class='fas fa-cog fa-3x'></i>
         </button>
       </div>
     </div>
     <div class="typewriterin__config">
-      <div class="typewriterin__config__panel">
+      <div class="typewriterin__config__panel" v-bind:style="configPanelStyle">
         <div class="typewriterin__config__panel__row">
           <label for="typewriterin-font-family">FONT-FAMILY: </label>
           <div class="input-wrapper">
-            <input type="text" name='typewriterin-font-family' :value="editorFontFamily" />
+            <input type="text" name='typewriterin-font-family' :value="editorFontFamily" v-bind:style="configPanelInputStyle" />
           </div>
         </div>
         <div class="typewriterin__config__panel__row">
           <label for="typewriterin-font-size">FONT-SIZE: </label>
           <div class="input-wrapper">
-            <input type="text" name='typewriterin-font-size' :value="editorFontSize" />
+            <input type="text" name='typewriterin-font-size' :value="editorFontSize" v-bind:style="configPanelInputStyle" />
           </div>
         </div>
         <div class="typewriterin__config__panel__row">
           <label for="typewriterin-font-color">FONT-COLOR: </label>
           <div class="input-wrapper">
-            <input type="text" name='typewriterin-font-color' :value="editorFontColor" />
+            <input type="text" name='typewriterin-font-color' :value="editorFontColor" v-bind:style="configPanelInputStyle" />
           </div>
         </div>
         <div class="typewriterin__config__panel__row">
           <label for="typewriterin-background-color">BACKGROUND-COLOR: </label>
           <div class="input-wrapper">
-            <input type="text" name='typewriterin-background-color' :value="editorBackGround"  />
+            <input type="text" name='typewriterin-background-color' :value="editorBackGround" v-bind:style="configPanelInputStyle" />
           </div>
         </div>
         <div class="typewriterin__config__panel__close-button-wrapper icon-button">
-          <button class="typewriterin__config__panel__close-button white" v-on:click="toggleConfigPanel(false); updateConfig(); saveConfig();">
+          <button class="typewriterin__config__panel__close-button" v-on:click="toggleConfigPanel(false); updateConfig(); saveConfig();"  v-bind:style="iconStyle">
             <i class='fas fa-times fa-3x'></i>
           </button>
         </div>
@@ -95,7 +95,25 @@
           'background': this.editorBackGround
         }
       },
-
+      configPanelStyle: function() {
+        return {
+          'font-family': this.editorFontFamily,
+          'color': this.editorFontColor,
+          'font-size': this.editorFontSize,
+          'background': this.editorBackGround
+        }
+      },
+      configPanelInputStyle: function() {
+        return {
+          'color': this.editorFontColor
+        }
+      },
+      iconStyle: function() {
+        return {
+          'color': this.editorBackGround,
+          'background': this.editorFontColor
+        }
+      },
       logoStyle: function() {
         return {
           'color': this.editorFontColor,
@@ -253,7 +271,7 @@
       padding: 2rem 7rem;
       border-radius: 20px;
 
-      background: rgba(0, 0, 0, .7);
+      // background: #333;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -279,7 +297,6 @@
         }
 
         .input-wrapper {
-          background: #333;
           padding: .5rem 2rem;
           border-radius: 1rem;
 
@@ -288,7 +305,6 @@
             background: none;
             border: none;
             outline: none;
-            color: #eee;
           }
         }
       }
@@ -307,7 +323,6 @@
   .icon-button {
 
     button {
-      color: #eee;
       border: none;
       cursor: pointer;
       margin-top: 5rem;
@@ -315,12 +330,6 @@
       border-radius: 50%;
       width: 4rem;
       height: 4rem;
-      background: rgba(0, 0, 0, .3);
-    }
-
-    button.white {
-      color: #333;
-      background: #eee;
     }
   }
 
