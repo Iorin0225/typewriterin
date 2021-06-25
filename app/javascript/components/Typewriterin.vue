@@ -10,39 +10,39 @@
     </div>
     <div class="typewriterin__footer" v-on:mouseover="toggleConfigButtons(true)" v-on:mouseleave="toggleConfigButtons(false)">
       <div class="typewriterin__footer__config-button-wrapper icon-button">
-        <button class="typewriterin__footer__config-button" v-on:click="toggleConfigPanel(true)"  v-bind:style="iconStyle">
+        <button class="typewriterin__footer__config-button" v-on:click="toggleConfigPanel(true)" v-bind:style="iconStyle">
           <i class='fas fa-cog fa-3x'></i>
         </button>
       </div>
     </div>
     <div class="typewriterin__config">
       <div class="typewriterin__config__panel" v-bind:style="configPanelStyle">
-        <div class="typewriterin__config__panel__row">
+        <div class="typewriterin__config__panel__row" v-bind:style="configBorderColorStyle">
           <label for="typewriterin-font-family">FONT-FAMILY: </label>
           <div class="input-wrapper">
             <input type="text" name='typewriterin-font-family' :value="editorFontFamily" v-bind:style="configPanelInputStyle" />
           </div>
         </div>
-        <div class="typewriterin__config__panel__row">
+        <div class="typewriterin__config__panel__row" v-bind:style="configBorderColorStyle">
           <label for="typewriterin-font-size">FONT-SIZE: </label>
           <div class="input-wrapper">
             <input type="text" name='typewriterin-font-size' :value="editorFontSize" v-bind:style="configPanelInputStyle" />
           </div>
         </div>
-        <div class="typewriterin__config__panel__row">
+        <div class="typewriterin__config__panel__row" v-bind:style="configBorderColorStyle">
           <label for="typewriterin-font-color">FONT-COLOR: </label>
           <div class="input-wrapper">
             <input type="text" name='typewriterin-font-color' :value="editorFontColor" v-bind:style="configPanelInputStyle" />
           </div>
         </div>
-        <div class="typewriterin__config__panel__row">
+        <div class="typewriterin__config__panel__row" v-bind:style="configBorderColorStyle">
           <label for="typewriterin-background-color">BACKGROUND-COLOR: </label>
           <div class="input-wrapper">
             <input type="text" name='typewriterin-background-color' :value="editorBackGround" v-bind:style="configPanelInputStyle" />
           </div>
         </div>
         <div class="typewriterin__config__panel__close-button-wrapper icon-button">
-          <button class="typewriterin__config__panel__close-button" v-on:click="toggleConfigPanel(false); updateConfig(); saveConfig();"  v-bind:style="iconStyle">
+          <button class="typewriterin__config__panel__close-button" v-on:click="toggleConfigPanel(false); updateConfig(); saveConfig();" v-bind:style="iconStyle">
             <i class='fas fa-times fa-3x'></i>
           </button>
         </div>
@@ -106,6 +106,11 @@
       configPanelInputStyle: function() {
         return {
           'color': this.editorFontColor
+        }
+      },
+      configBorderColorStyle: function() {
+        return {
+          'border-color': this.editorFontColor
         }
       },
       iconStyle: function() {
@@ -201,8 +206,9 @@
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   position: absolute;
+  overflow: hidden;
 
   * {
     outline: none;
@@ -229,7 +235,8 @@
 
     textarea {
       display: block;
-      min-height: 30rem;
+      max-height: 80vh;
+      height: 30rem;
       background: none;
       outline: none;
       border: none;
@@ -265,7 +272,8 @@
 
     .typewriterin__config__panel {
       width: 80vw;
-      min-height: 50vh;
+      max-height: 50vh;
+      overflow: scroll;
 
       margin: 5rem auto;
       padding: 2rem 7rem;
@@ -274,7 +282,7 @@
       // background: #333;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: start;
 
       .typewriterin__config__panel__row {
         display: flex;
@@ -310,7 +318,7 @@
       }
 
       .typewriterin__config__panel__row:not(:first-child) {
-        border-top: 1px solid #eee;
+        border-top: 1px solid;
       }
 
       .typewriterin__config__panel__close-button-wrapper {
