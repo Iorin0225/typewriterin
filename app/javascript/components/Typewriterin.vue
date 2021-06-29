@@ -322,18 +322,17 @@
       }
 
       .typewriterin__config__panel__close-button-wrapper {
-        margin: 3rem auto;
+        margin: 1rem auto 0;
       }
     }
   }
 
 
   .icon-button {
-
     button {
       border: none;
       cursor: pointer;
-      margin-top: 5rem;
+      display: block;
 
       border-radius: 50%;
       width: 4rem;
