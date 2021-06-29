@@ -66,6 +66,8 @@
     mounted: function() {
       this.loadConfig();
 
+      let thisComponent = this
+
       window.onload = function() {
         let logo = document.querySelector('.typewriterin__header__logo')
         TweenMax.to(logo, 0.5, {
@@ -78,6 +80,11 @@
           delay: 1,
           border: 'none',
         });
+
+        setTimeout(() => {
+          thisComponent.toggleConfigButtons(false)
+        }, 1000)
+
       }
     },
 
