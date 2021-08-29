@@ -1,4 +1,4 @@
-name: Deploy to sample-rails-with-gha
+name: Deploy to Heroku
 
 on:
   push:
