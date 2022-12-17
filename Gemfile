@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.3'
+ruby '2.7.7'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '>= 6.1.3.2'
@@ -37,11 +37,11 @@ end
 
 group :development, :test do
   # Use mysql as the database for Active Record
-  gem 'mysql2', '>= 0.4.4'
+  # gem 'mysql2', '>= 0.4.4'
 end
 
 group :production do
-  gem 'pg'
+  # gem 'pg'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
